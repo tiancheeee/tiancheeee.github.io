@@ -7,23 +7,32 @@
 <title>近日单曲循环 · Tiancheeee</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
 
 :root{
-    --bg:#fff8f4;
-    --text:#4b4453;
-    --muted:#8c8194;
+    --bg-top:#fff1f5;
+    --bg-mid:#fff8f5;
+    --bg-bottom:#fffefa;
 
-    --pink:#f6a6bd;
-    --peach:#ffd6c9;
-    --cream:#fff0b8;
-    --blue:#b8e0ff;
-    --mint:#c8f3e6;
-    --lavender:#d9c7ff;
+    --text:#4f463e;
+    --muted:#8f8476;
 
-    --accent:#f29ab3;
-    --border:rgba(255,255,255,.78);
-    --glass:rgba(255,255,255,.58);
-    --shadow:rgba(174,139,157,.22);
+    --pink:#f7c8d4;
+    --pink-soft:#f9d7df;
+    --pink-deep:#9f6b7b;
+
+    --white-border:rgba(255,255,255,.72);
+    --shadow:rgba(132,112,90,.12);
+
+    /*
+    如果以后想给这个页面加照片，可以上传到：
+    assets/images/playlist.jpg
+
+    因为这个文件在 playlist 文件夹里，
+    所以这里要写 ../assets/images/playlist.jpg
+    */
+
+    --page-img:url("../assets/images/playlist.jpg");
 }
 
 *{
@@ -39,18 +48,26 @@ html{
 body{
     min-height:100vh;
     color:var(--text);
-    font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "PingFang SC",
-    "Microsoft YaHei",
-    "Segoe UI",
-    sans-serif;
-    background:var(--bg);
     overflow-x:hidden;
+
+    font-family:
+    "Nunito",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei UI",
+    "Microsoft YaHei",
+    sans-serif;
+
+    background:
+    linear-gradient(
+        180deg,
+        var(--bg-top) 0%,
+        var(--bg-mid) 48%,
+        var(--bg-bottom) 100%
+    );
 }
 
-/* 全页马卡龙背景 */
+/* 淡粉雾感背景 */
 
 body::before{
     content:"";
@@ -59,11 +76,9 @@ body::before{
     z-index:-3;
 
     background:
-    radial-gradient(circle at 8% 12%, rgba(246,166,189,.55), transparent 28%),
-    radial-gradient(circle at 88% 10%, rgba(184,224,255,.58), transparent 30%),
-    radial-gradient(circle at 16% 86%, rgba(255,240,184,.70), transparent 32%),
-    radial-gradient(circle at 82% 82%, rgba(217,199,255,.50), transparent 30%),
-    linear-gradient(135deg,#fffaf7 0%,#fff1f7 42%,#f6fbff 100%);
+    radial-gradient(circle at 14% 10%, rgba(247,200,212,.26), transparent 34%),
+    radial-gradient(circle at 86% 18%, rgba(247,200,212,.18), transparent 32%),
+    radial-gradient(circle at 50% 96%, rgba(247,200,212,.12), transparent 38%);
 }
 
 body::after{
@@ -74,10 +89,10 @@ body::after{
     pointer-events:none;
 
     background-image:
-    radial-gradient(rgba(255,255,255,.65) 1px, transparent 1px);
+    radial-gradient(rgba(255,255,255,.76) 1px, transparent 1px);
 
-    background-size:22px 22px;
-    opacity:.35;
+    background-size:24px 24px;
+    opacity:.28;
 }
 
 /* 页面容器 */
@@ -94,7 +109,7 @@ body::after{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:70px;
+    margin-bottom:92px;
 }
 
 .back{
@@ -103,35 +118,43 @@ body::after{
     gap:8px;
 
     padding:10px 18px;
-    border-radius:999px;
 
-    color:#9d6f82;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.72);
+
+    background:rgba(255,255,255,.30);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    color:var(--pink-deep);
     text-decoration:none;
     font-size:.95rem;
+    font-weight:700;
 
-    background:rgba(255,255,255,.55);
-    border:1px solid rgba(255,255,255,.8);
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.85),
-    0 12px 32px rgba(174,139,157,.16);
-
-    transition:.25s ease;
+    transition:
+    transform .25s ease,
+    background .25s ease;
 }
 
 .back:hover{
     transform:translateY(-3px);
-    box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.9),
-    0 18px 42px rgba(174,139,157,.22);
+    background:rgba(255,255,255,.44);
 }
 
 .nav-tag{
-    color:#b66f86;
+    padding:8px 15px;
+
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.72);
+
+    background:rgba(255,255,255,.28);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    color:var(--pink-deep);
+
     font-size:.78rem;
+    font-weight:800;
     letter-spacing:3px;
     text-transform:uppercase;
 }
@@ -139,118 +162,78 @@ body::after{
 /* Hero */
 
 .hero{
-    position:relative;
-    margin-bottom:44px;
-    padding:58px 48px;
-
-    border-radius:46px;
-    border:1px solid rgba(255,255,255,.72);
-
-    background:
-    linear-gradient(
-        180deg,
-        rgba(255,255,255,.66),
-        rgba(255,255,255,.36)
-    );
-
-    backdrop-filter:blur(28px);
-    -webkit-backdrop-filter:blur(28px);
-
-    box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.85),
-    0 28px 90px rgba(174,139,157,.18);
-
-    overflow:hidden;
-}
-
-.hero::before{
-    content:"";
-    position:absolute;
-    right:-100px;
-    top:-120px;
-
-    width:360px;
-    height:360px;
-    border-radius:50%;
-
-    background:
-    radial-gradient(circle, rgba(246,166,189,.48), transparent 68%);
-}
-
-.hero::after{
-    content:"";
-    position:absolute;
-    left:-120px;
-    bottom:-150px;
-
-    width:420px;
-    height:420px;
-    border-radius:50%;
-
-    background:
-    radial-gradient(circle, rgba(184,224,255,.55), transparent 68%);
+    min-height:54vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    margin-bottom:40px;
 }
 
 .hero-content{
-    position:relative;
-    z-index:2;
+    width:min(920px,92%);
 }
 
 .kicker{
     display:inline-flex;
-    padding:8px 15px;
+    padding:10px 18px;
+    margin-bottom:28px;
 
-    color:#b66f86;
-    background:rgba(255,255,255,.56);
-    border:1px solid rgba(255,255,255,.76);
     border-radius:999px;
+    border:1px solid rgba(255,255,255,.72);
 
+    background:rgba(255,255,255,.28);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    color:var(--pink-deep);
     font-size:.78rem;
+    font-weight:800;
     letter-spacing:3px;
     text-transform:uppercase;
-    margin-bottom:24px;
 }
 
 .hero h1{
-    font-size:clamp(2.6rem,5vw,5.2rem);
-    line-height:1.15;
+    font-size:clamp(2.8rem,6vw,6rem);
+    line-height:1.12;
     letter-spacing:-1px;
-    color:#433a4c;
-    margin-bottom:24px;
+    color:#4f463e;
+    font-weight:800;
+    margin-bottom:26px;
 }
 
 .hero p{
-    max-width:760px;
-    color:#82758c;
+    max-width:820px;
+    margin:0 auto;
+    color:var(--muted);
     font-size:1.08rem;
     line-height:2;
+    font-weight:500;
 }
 
-/* 小提示 */
+/* 提示条 */
 
 .notice{
     margin-bottom:34px;
     padding:20px 24px;
 
     border-radius:26px;
-    border:1px solid rgba(255,255,255,.72);
+    border:1px solid rgba(255,255,255,.62);
 
-    background:rgba(255,255,255,.44);
+    background:rgba(247,200,212,.32);
 
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    color:#82758c;
+    color:#7a6e64;
     line-height:1.8;
+    font-weight:500;
 
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.75),
-    0 18px 50px rgba(174,139,157,.14);
+    inset 0 1px 1px rgba(255,255,255,.46),
+    0 18px 50px rgba(132,112,90,.08);
 }
 
 .notice strong{
-    color:#b66f86;
-    font-weight:600;
+    color:var(--pink-deep);
+    font-weight:800;
 }
 
 /* 歌曲列表 */
@@ -262,30 +245,32 @@ body::after{
 
 .song-card{
     position:relative;
+
     display:grid;
-    grid-template-columns:280px 1fr;
-    gap:28px;
+    grid-template-columns:250px 1fr;
+    gap:30px;
 
+    min-height:290px;
     padding:28px;
-    border-radius:36px;
-    border:1px solid var(--border);
 
-    background:
-    linear-gradient(
-        180deg,
-        rgba(255,255,255,.76),
-        rgba(255,255,255,.48)
-    );
+    border-radius:38px;
+    border:1px solid rgba(255,255,255,.62);
 
-    backdrop-filter:blur(26px);
-    -webkit-backdrop-filter:blur(26px);
+    background:var(--pink);
 
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.85),
-    0 24px 70px var(--shadow);
+    inset 0 1px 1px rgba(255,255,255,.60),
+    0 22px 60px var(--shadow);
 
     overflow:hidden;
+
+    transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
 }
+
+/* 页面照片纹理层：浅黑白，不变脏 */
 
 .song-card::before{
     content:"";
@@ -293,26 +278,59 @@ body::after{
     inset:0;
     z-index:0;
 
+    background-image:var(--page-img);
+    background-size:cover;
+    background-position:center;
+
+    filter:
+    grayscale(100%)
+    brightness(1.30)
+    contrast(.90);
+
+    opacity:.12;
+
+    transition:
+    transform .45s ease,
+    opacity .35s ease;
+}
+
+.song-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+
     background:
-    radial-gradient(circle at 92% 10%, var(--blob), transparent 34%),
-    radial-gradient(circle at 8% 92%, var(--soft), transparent 34%);
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.24) 0%,
+        rgba(255,255,255,.06) 45%,
+        rgba(255,255,255,.10) 100%
+    ),
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.28),
+        transparent 40%
+    );
 
-    opacity:.86;
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.48),
+    inset 0 -14px 24px rgba(255,255,255,.08);
 }
 
-.song-card:nth-child(1){
-    --blob:rgba(246,166,189,.42);
-    --soft:rgba(255,240,184,.44);
+.song-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,.86);
+
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.72),
+    0 28px 80px rgba(132,112,90,.16);
 }
 
-.song-card:nth-child(2){
-    --blob:rgba(184,224,255,.50);
-    --soft:rgba(217,199,255,.38);
-}
-
-.song-card:nth-child(3){
-    --blob:rgba(200,243,230,.46);
-    --soft:rgba(255,214,201,.40);
+.song-card:hover::before{
+    transform:scale(1.04);
+    opacity:.18;
 }
 
 .song-cover,
@@ -321,47 +339,44 @@ body::after{
     z-index:2;
 }
 
-/* 唱片封面感 */
+/* 唱片感封面 */
 
 .song-cover{
-    min-height:280px;
-    border-radius:28px;
+    min-height:250px;
+    border-radius:30px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
     background:
-    radial-gradient(circle at center, rgba(255,255,255,.85) 0 7%, transparent 8%),
-    radial-gradient(circle at center, rgba(255,255,255,.34) 0 18%, transparent 19%),
-    conic-gradient(
-        from 120deg,
-        rgba(246,166,189,.82),
-        rgba(255,240,184,.82),
-        rgba(184,224,255,.82),
-        rgba(217,199,255,.82),
-        rgba(246,166,189,.82)
-    );
+    radial-gradient(circle at center, rgba(255,255,255,.88) 0 7%, transparent 8%),
+    radial-gradient(circle at center, rgba(255,255,255,.34) 0 20%, transparent 21%),
+    linear-gradient(135deg, rgba(255,255,255,.32), rgba(255,255,255,.08)),
+    var(--pink-soft);
 
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.7),
-    0 18px 45px rgba(174,139,157,.18);
+    inset 0 1px 1px rgba(255,255,255,.58),
+    0 16px 40px rgba(132,112,90,.10);
 }
 
 .song-cover span{
-    position:relative;
-    z-index:2;
-
     padding:8px 14px;
     border-radius:999px;
 
-    color:#9d6f82;
+    color:var(--pink-deep);
     font-size:.78rem;
+    font-weight:800;
     letter-spacing:2px;
 
-    background:rgba(255,255,255,.62);
-    border:1px solid rgba(255,255,255,.76);
+    background:rgba(255,255,255,.34);
+    border:1px solid rgba(255,255,255,.62);
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
 }
+
+/* 歌曲信息 */
 
 .song-info{
     display:flex;
@@ -379,51 +394,57 @@ body::after{
 
 .meta span{
     padding:7px 12px;
+
     border-radius:999px;
+    border:1px solid rgba(255,255,255,.58);
 
-    color:#b66f86;
+    background:rgba(255,255,255,.24);
+    color:var(--pink-deep);
+
     font-size:.78rem;
-
-    background:rgba(255,255,255,.58);
-    border:1px solid rgba(255,255,255,.74);
+    font-weight:700;
 }
 
 .song-info h2{
-    color:#433a4c;
+    color:#463f38;
     font-size:clamp(1.8rem,3vw,3rem);
     line-height:1.18;
     margin-bottom:12px;
+    font-weight:800;
 }
 
 .artist{
-    color:#9d6f82;
+    color:var(--pink-deep);
     font-size:1.02rem;
+    font-weight:800;
     margin-bottom:18px;
 }
 
 .thought{
-    color:#82758c;
+    color:#6d6359;
     line-height:1.9;
     font-size:1rem;
+    font-weight:500;
 }
 
-/* 官方播放器预留区 */
+/* 官方播放器嵌入区 */
 
 .embed-box{
     min-height:96px;
     border-radius:22px;
-    border:1px dashed rgba(182,111,134,.38);
+    border:1px dashed rgba(159,107,123,.36);
 
-    background:rgba(255,255,255,.42);
+    background:rgba(255,255,255,.24);
 
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
 
-    color:#9a8da4;
+    color:#7f746b;
     font-size:.95rem;
     line-height:1.7;
+    font-weight:500;
 
     overflow:hidden;
 }
@@ -440,7 +461,7 @@ footer{
     padding:36px 20px;
     text-align:center;
 
-    color:#8c8194;
+    color:var(--muted);
 }
 
 footer p{
@@ -448,8 +469,9 @@ footer p{
 }
 
 footer .brand{
-    color:#5a5063;
+    color:#5a5148;
     letter-spacing:1px;
+    font-weight:700;
 }
 
 /* 响应式 */
@@ -468,6 +490,7 @@ footer .brand{
         align-items:flex-start;
         gap:16px;
         flex-direction:column;
+        margin-bottom:64px;
     }
 
 }
@@ -479,12 +502,11 @@ footer .brand{
     }
 
     .hero{
-        padding:42px 26px;
-        border-radius:34px;
+        min-height:48vh;
     }
 
     .hero h1{
-        font-size:2.3rem;
+        font-size:2.5rem;
     }
 
     .hero p{
@@ -501,7 +523,6 @@ footer .brand{
     }
 
 }
-
 </style>
 </head>
 
@@ -563,7 +584,7 @@ footer .brand{
                     <div class="meta">
                         <span>2026-06-10</span>
                         <span>单曲循环</span>
-                        <span>Metal / Rock / Pop</span>
+                        <span>Music Note</span>
                     </div>
 
                     <h2>
@@ -576,7 +597,7 @@ footer .brand{
 
                     <p class="thought">
                         这里写你为什么被这首歌震撼。可以写旋律、编曲、歌词、某个鼓点、
-                        某段吉他、某个副歌，也可以只是写“它刚好出现在一个很特别的时刻”。
+                        某段吉他、某个副歌，也可以只是写它刚好出现在一个很特别的时刻。
                     </p>
 
                 </div>
