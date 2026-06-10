@@ -10,11 +10,29 @@
 
 :root{
     --bg:#0b0f17;
-    --card:rgba(255,255,255,.05);
-    --text:#d9dde3;
-    --muted:#8f96a3;
-    --gold:#8b6b2f;
-    --border:rgba(255,255,255,.08);
+    --bg-soft:#111827;
+    --card:rgba(255,255,255,.055);
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --gold:#9b762f;
+    --border:rgba(255,255,255,.09);
+
+    /*
+    以后你自己的照片可以放在这里替换：
+
+    assets/images/hero.jpg
+    assets/images/playlist.jpg
+    assets/images/guitar.jpg
+    assets/images/vocal.jpg
+    assets/images/notes.jpg
+    */
+
+    --hero-img:url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2200&q=80");
+
+    --playlist-img:url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=80");
+    --guitar-img:url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1200&q=80");
+    --vocal-img:url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80");
+    --notes-img:url("https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1200&q=80");
 }
 
 *{
@@ -28,21 +46,28 @@ html{
 }
 
 body{
-    background:var(--bg);
+    min-height:100vh;
     color:var(--text);
     font-family:
     -apple-system,
     BlinkMacSystemFont,
     "PingFang SC",
+    "Microsoft YaHei",
     "Segoe UI",
     sans-serif;
+
+    background:
+    radial-gradient(circle at top left, rgba(37,49,75,.45), transparent 34%),
+    radial-gradient(circle at 80% 10%, rgba(155,118,47,.08), transparent 28%),
+    linear-gradient(180deg,#0b0f17 0%,#070a10 100%);
 }
 
-/* HERO */
+/* 顶部 Hero */
 
 .hero{
     position:relative;
     height:100vh;
+    min-height:680px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -50,217 +75,248 @@ body{
 }
 
 .hero::before{
-
     content:"";
-
     position:absolute;
     inset:0;
 
     background:
     linear-gradient(
-        rgba(7,10,15,.78),
+        rgba(7,10,15,.72),
         rgba(7,10,15,.92)
     ),
-    url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2000&q=80");
+    var(--hero-img);
 
     background-size:cover;
     background-position:center;
 
     filter:
     grayscale(100%)
-    contrast(120%)
-    brightness(45%);
+    contrast(125%)
+    brightness(46%)
+    saturate(0);
+
+    transform:scale(1.04);
 }
 
 .hero::after{
-
     content:"";
-
     position:absolute;
     inset:0;
 
     background:
-    radial-gradient(
-        circle at center,
-        transparent 20%,
-        rgba(0,0,0,.5) 100%
-    );
+    radial-gradient(circle at center, transparent 18%, rgba(0,0,0,.62) 100%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.08) 0 1px, transparent 1px 4px);
 
+    opacity:.6;
 }
 
 .hero-content{
     position:relative;
     z-index:2;
+    width:min(1100px,92%);
     text-align:center;
-    max-width:1100px;
-    padding:20px;
+}
+
+.hero-kicker{
+    margin-bottom:24px;
+    color:var(--gold);
+    font-size:.85rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
 }
 
 .hero h1{
-
-    font-size:
-    clamp(2rem,4vw,4.8rem);
-
-    line-height:1.3;
-
-    margin-bottom:24px;
+    font-size:clamp(2.2rem,4.5vw,5rem);
+    line-height:1.25;
+    letter-spacing:-1px;
+    margin-bottom:28px;
 }
 
 .hero p{
-
+    max-width:840px;
+    margin:0 auto;
     color:var(--muted);
-
-    font-size:1.15rem;
-
-    line-height:1.9;
-
-    max-width:900px;
-
-    margin:auto;
+    font-size:1.12rem;
+    line-height:2;
 }
 
 .scroll-tip{
-
-    margin-top:40px;
-
+    margin-top:52px;
     color:var(--gold);
-
-    letter-spacing:2px;
-
-    font-size:.9rem;
+    font-size:.85rem;
+    letter-spacing:3px;
 }
 
-/* SECTION */
+/* 主内容 */
 
-.section{
-
+.main{
+    position:relative;
     width:min(1400px,92%);
-
-    margin:auto;
-
-    padding:80px 0 120px;
+    margin:0 auto;
+    padding:90px 0 130px;
 }
 
-/* BENTO */
+.section-title{
+    margin-bottom:36px;
+}
 
-.bento{
+.section-title span{
+    color:var(--gold);
+    font-size:.8rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
 
+.section-title h2{
+    margin-top:10px;
+    font-size:clamp(2rem,3vw,3.2rem);
+    letter-spacing:-1px;
+}
+
+/* 1 + 3 布局 */
+
+.salon-grid{
     display:grid;
+    gap:26px;
+}
 
-    gap:24px;
+.feature-card{
+    min-height:360px;
+}
 
-    grid-template-columns:
-    repeat(4,1fr);
-
-    grid-auto-rows:220px;
+.card-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
 }
 
 .card{
-
     position:relative;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    backdrop-filter:blur(20px);
-
-    border-radius:30px;
-
-    padding:32px;
-
+    min-height:300px;
+    padding:34px;
+    border-radius:34px;
     overflow:hidden;
-
+    color:var(--text);
     text-decoration:none;
-
-    color:white;
-
-    transition:.35s;
+    border:1px solid var(--border);
+    background:var(--card);
+    backdrop-filter:blur(22px);
+    transition:
+    transform .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
 }
 
 .card:hover{
-
-    transform:
-    translateY(-8px);
-
-    border-color:
-    rgba(139,107,47,.4);
+    transform:translateY(-8px);
+    border-color:rgba(155,118,47,.55);
+    box-shadow:0 24px 80px rgba(0,0,0,.35);
 }
 
 .card::before{
-
     content:"";
-
     position:absolute;
+    inset:0;
 
+    background:
+    linear-gradient(
+        180deg,
+        rgba(11,15,23,.25) 0%,
+        rgba(11,15,23,.7) 55%,
+        rgba(11,15,23,.92) 100%
+    ),
+    var(--card-img);
+
+    background-size:cover;
+    background-position:center;
+
+    filter:
+    grayscale(100%)
+    contrast(115%)
+    brightness(58%);
+
+    transform:scale(1.03);
+    transition:.45s ease;
+    opacity:.62;
+}
+
+.card:hover::before{
+    transform:scale(1.08);
+    opacity:.78;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
     inset:0;
 
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.05),
-    inset 0 -12px 24px rgba(0,0,0,.25);
+    inset 0 1px 1px rgba(255,255,255,.08),
+    inset 0 -18px 35px rgba(0,0,0,.35);
 
     pointer-events:none;
 }
 
-.large{
-    grid-column:span 2;
-}
-
-.tall{
-    grid-row:span 2;
+.card-content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
 }
 
 .label{
-
     color:var(--gold);
-
+    font-size:.78rem;
+    letter-spacing:3px;
     text-transform:uppercase;
-
-    letter-spacing:2px;
-
-    font-size:.8rem;
+    margin-bottom:18px;
 }
 
-.card h2{
-
-    margin-top:16px;
-
-    margin-bottom:14px;
-
-    font-size:1.7rem;
+.card h3{
+    font-size:clamp(1.8rem,3vw,3rem);
+    line-height:1.2;
+    margin-bottom:18px;
 }
 
 .card p{
-
+    max-width:680px;
     color:var(--muted);
-
-    line-height:1.8;
+    font-size:1rem;
+    line-height:1.9;
 }
 
-.icon{
-
-    position:absolute;
-
-    right:22px;
-
-    bottom:10px;
-
-    font-size:5rem;
-
-    opacity:.08;
+.feature-card h3{
+    font-size:clamp(2.4rem,4vw,4.4rem);
 }
 
-/* FOOTER */
+.feature-card p{
+    font-size:1.08rem;
+}
+
+.playlist{
+    --card-img:var(--playlist-img);
+}
+
+.guitar{
+    --card-img:var(--guitar-img);
+}
+
+.vocal{
+    --card-img:var(--vocal-img);
+}
+
+.notes{
+    --card-img:var(--notes-img);
+}
+
+/* 页脚 */
 
 footer{
-
-    text-align:center;
-
+    border-top:1px solid rgba(255,255,255,.06);
     padding:60px 20px;
-
-    border-top:
-    1px solid rgba(255,255,255,.05);
-
+    text-align:center;
     color:var(--muted);
 }
 
@@ -268,25 +324,53 @@ footer p{
     margin:8px 0;
 }
 
-@media(max-width:900px){
-
-.bento{
-grid-template-columns:1fr;
+footer .brand{
+    color:var(--text);
+    letter-spacing:1px;
 }
 
-.large,
-.tall{
-grid-column:auto;
-grid-row:auto;
+/* 响应式 */
+
+@media(max-width:1000px){
+
+    .card-row{
+        grid-template-columns:1fr;
+    }
+
+    .feature-card,
+    .card{
+        min-height:300px;
+    }
+
 }
 
-.hero{
-height:90vh;
-}
+@media(max-width:640px){
 
-.hero h1{
-font-size:2rem;
-}
+    .hero{
+        min-height:620px;
+    }
+
+    .hero h1{
+        font-size:2.15rem;
+    }
+
+    .hero p{
+        font-size:1rem;
+    }
+
+    .main{
+        padding:70px 0 100px;
+    }
+
+    .card{
+        padding:28px;
+        border-radius:28px;
+    }
+
+    .feature-card h3,
+    .card h3{
+        font-size:2rem;
+    }
 
 }
 
@@ -297,127 +381,147 @@ font-size:2rem;
 
 <section class="hero">
 
-<div class="hero-content">
+    <div class="hero-content">
 
-<h1>
-白天是生命科学的微观世界，<br>
-夜晚是重金属与贝斯的绝对律动。
-</h1>
+        <div class="hero-kicker">
+            Digital Music Salon
+        </div>
 
-<p>
-欢迎来到我的个人存档点。<br>
-拔掉白天的插头，这里只提供纯粹的声响与生活留痕。
-</p>
+        <h1>
+            白天是生命科学的微观世界，<br>
+            夜晚是重金属与贝斯的绝对律动。
+        </h1>
 
-<div class="scroll-tip">
-DIGITAL MUSIC SALON ↓
-</div>
+        <p>
+            欢迎来到我的个人存档点。拔掉白天的插头，
+            这里只提供纯粹的声响与生活留痕。
+        </p>
 
-</div>
+        <div class="scroll-tip">
+            ENTER THE ARCHIVE ↓
+        </div>
 
-</section>
-
-<section class="section">
-
-<div class="bento">
-
-<a class="card large" href="playlist/index.html">
-
-<div class="label">
-Music Archive
-</div>
-
-<h2>
-近日单曲循环
-</h2>
-
-<p>
-记录那些不断重复播放，
-最终进入记忆深处的声音。
-</p>
-
-<div class="icon">
-◉
-</div>
-
-</a>
-
-<a class="card tall" href="guitar/index.html">
-
-<div class="label">
-Guitar Notes
-</div>
-
-<h2>
-吉他自学小记
-</h2>
-
-<p>
-和弦、拨片、节奏型与变调夹。
-每一次练习都值得留下痕迹。
-</p>
-
-<div class="icon">
-🎸
-</div>
-
-</a>
-
-<a class="card" href="vocal/index.html">
-
-<div class="label">
-Vocal Training
-</div>
-
-<h2>
-声乐训练与曲目
-</h2>
-
-<p>
-记录每一次呼吸、
-共鸣和音准修正。
-</p>
-
-<div class="icon">
-〰
-</div>
-
-</a>
-
-<a class="card" href="notes/index.html">
-
-<div class="label">
-Notes
-</div>
-
-<h2>
-杂言
-</h2>
-
-<p>
-一些不属于音乐，
-却依然属于生活的记录。
-</p>
-
-<div class="icon">
-✦
-</div>
-
-</a>
-
-</div>
+    </div>
 
 </section>
+
+<main class="main">
+
+    <div class="section-title">
+
+        <span>
+            Archive Rooms
+        </span>
+
+        <h2>
+            声音、练习与生活切片
+        </h2>
+
+    </div>
+
+    <section class="salon-grid">
+
+        <a class="card feature-card playlist" href="playlist/index.html">
+
+            <div class="card-content">
+
+                <div class="label">
+                    Music Archive
+                </div>
+
+                <h3>
+                    近日单曲循环
+                </h3>
+
+                <p>
+                    记录那些不断重复播放，最终进入记忆深处的声音。
+                    一首歌循环到失去时间感，也许就是它真正开始属于你的时刻。
+                </p>
+
+            </div>
+
+        </a>
+
+        <div class="card-row">
+
+            <a class="card guitar" href="guitar/index.html">
+
+                <div class="card-content">
+
+                    <div class="label">
+                        Guitar Notes
+                    </div>
+
+                    <h3>
+                        吉他自学小记
+                    </h3>
+
+                    <p>
+                        和弦、拨片、节奏型与变调夹。
+                        每一次练习都值得留下痕迹。
+                    </p>
+
+                </div>
+
+            </a>
+
+            <a class="card vocal" href="vocal/index.html">
+
+                <div class="card-content">
+
+                    <div class="label">
+                        Vocal Training
+                    </div>
+
+                    <h3>
+                        声乐训练与曲目
+                    </h3>
+
+                    <p>
+                        记录每一次呼吸、共鸣和音准修正。
+                        把不稳定的声音慢慢变成可控的表达。
+                    </p>
+
+                </div>
+
+            </a>
+
+            <a class="card notes" href="notes/index.html">
+
+                <div class="card-content">
+
+                    <div class="label">
+                        Notes
+                    </div>
+
+                    <h3>
+                        杂言
+                    </h3>
+
+                    <p>
+                        一些不属于音乐，却依然属于生活的记录。
+                        夜晚的想法、随手的句子，以及偶尔跑偏的日常。
+                    </p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
 
 <footer>
 
-<p>
-Tiancheeee · Digital Music Salon
-</p>
+    <p class="brand">
+        Tiancheeee · Digital Music Salon
+    </p>
 
-<p>
-Life Science × Metal × Bass
-</p>
+    <p>
+        Life Science × Music
+    </p>
 
 </footer>
 
