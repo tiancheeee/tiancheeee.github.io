@@ -9,22 +9,21 @@
 <style>
 
 :root{
-    --bg:#0b0f17;
-    --text:#e5e7eb;
-    --muted:#a1a7b3;
-    --gold:#9b762f;
-    --border:rgba(255,255,255,.10);
-    --glass:rgba(11,15,23,.48);
+    --bg:#fff8f4;
+    --text:#4b4453;
+    --muted:#8c8194;
 
-    /*
-    以后你换自己的主页背景图，只需要改这里：
+    --pink:#f6a6bd;
+    --peach:#ffd6c9;
+    --cream:#fff0b8;
+    --blue:#b8e0ff;
+    --mint:#c8f3e6;
+    --lavender:#d9c7ff;
 
-    url("assets/images/hero.jpg")
-
-    现在先用网络图占位。
-    */
-
-    --page-bg:url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2200&q=80");
+    --accent:#f29ab3;
+    --border:rgba(255,255,255,.78);
+    --glass:rgba(255,255,255,.58);
+    --shadow:rgba(174,139,157,.22);
 }
 
 *{
@@ -60,26 +59,14 @@ body::before{
     z-index:-3;
 
     background:
-    linear-gradient(
-        rgba(6,9,14,.72),
-        rgba(6,9,14,.92)
-    ),
-    var(--page-bg);
-
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-
-    filter:
-    grayscale(100%)
-    contrast(125%)
-    brightness(42%)
-    saturate(0);
-
-    transform:scale(1.04);
+    radial-gradient(circle at 8% 12%, rgba(246,166,189,.55), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgba(184,224,255,.58), transparent 30%),
+    radial-gradient(circle at 16% 86%, rgba(255,240,184,.70), transparent 32%),
+    radial-gradient(circle at 82% 82%, rgba(217,199,255,.50), transparent 30%),
+    linear-gradient(135deg,#fffaf7 0%,#fff1f7 42%,#f6fbff 100%);
 }
 
-/* 全站暗角和冷色氛围 */
+/* 柔和颗粒和轻微纸感 */
 
 body::after{
     content:"";
@@ -88,10 +75,16 @@ body::after{
     z-index:-2;
     pointer-events:none;
 
-    background:
-    radial-gradient(circle at center, transparent 20%, rgba(0,0,0,.68) 100%),
-    radial-gradient(circle at top left, rgba(35,50,80,.35), transparent 32%),
-    radial-gradient(circle at 80% 15%, rgba(155,118,47,.09), transparent 26%);
+    background-image:
+    radial-gradient(rgba(255,255,255,.65) 1px, transparent 1px);
+    background-size:22px 22px;
+    opacity:.35;
+
+    mask-image:linear-gradient(
+        180deg,
+        rgba(0,0,0,.9),
+        rgba(0,0,0,.25)
+    );
 }
 
 /* 顶部 Hero */
@@ -107,21 +100,54 @@ body::after{
 
 .hero-content{
     width:min(1100px,92%);
+    padding:58px 46px;
+
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:46px;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.62),
+        rgba(255,255,255,.34)
+    );
+
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
+
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.85),
+    0 28px 90px rgba(174,139,157,.18);
 }
 
 .hero-kicker{
-    margin-bottom:24px;
-    color:var(--gold);
-    font-size:.85rem;
-    letter-spacing:4px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:26px;
+    padding:9px 18px;
+
+    color:#9d6f82;
+    background:rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:999px;
+
+    font-size:.78rem;
+    letter-spacing:3px;
     text-transform:uppercase;
+
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.8),
+    0 10px 30px rgba(246,166,189,.16);
 }
 
 .hero h1{
-    font-size:clamp(2.2rem,4.5vw,5rem);
+    font-size:clamp(2.15rem,4.4vw,4.8rem);
     line-height:1.25;
     letter-spacing:-1px;
     margin-bottom:28px;
+    color:#433a4c;
 }
 
 .hero p{
@@ -133,10 +159,17 @@ body::after{
 }
 
 .scroll-tip{
-    margin-top:52px;
-    color:var(--gold);
-    font-size:.85rem;
-    letter-spacing:3px;
+    display:inline-flex;
+    margin-top:46px;
+    padding:10px 18px;
+
+    color:#b66f86;
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:999px;
+
+    font-size:.82rem;
+    letter-spacing:2px;
 }
 
 /* 主内容 */
@@ -152,16 +185,24 @@ body::after{
 }
 
 .section-title span{
-    color:var(--gold);
-    font-size:.8rem;
+    display:inline-flex;
+    padding:8px 15px;
+
+    color:#b66f86;
+    background:rgba(255,255,255,.52);
+    border:1px solid rgba(255,255,255,.76);
+    border-radius:999px;
+
+    font-size:.78rem;
     letter-spacing:3px;
     text-transform:uppercase;
 }
 
 .section-title h2{
-    margin-top:10px;
+    margin-top:18px;
     font-size:clamp(2rem,3vw,3.2rem);
     letter-spacing:-1px;
+    color:#433a4c;
 }
 
 /* 1 + 3 布局 */
@@ -173,6 +214,8 @@ body::after{
 
 .feature-card{
     min-height:360px;
+    --blob:rgba(246,166,189,.48);
+    --soft:rgba(255,214,201,.36);
 }
 
 .card-row{
@@ -181,11 +224,26 @@ body::after{
     gap:26px;
 }
 
+.card-row .card:nth-child(1){
+    --blob:rgba(184,224,255,.55);
+    --soft:rgba(200,243,230,.35);
+}
+
+.card-row .card:nth-child(2){
+    --blob:rgba(255,240,184,.62);
+    --soft:rgba(255,214,201,.34);
+}
+
+.card-row .card:nth-child(3){
+    --blob:rgba(217,199,255,.55);
+    --soft:rgba(246,166,189,.30);
+}
+
 .card{
     position:relative;
     min-height:300px;
     padding:34px;
-    border-radius:34px;
+    border-radius:36px;
     overflow:hidden;
 
     color:var(--text);
@@ -196,41 +254,64 @@ body::after{
     background:
     linear-gradient(
         180deg,
-        rgba(255,255,255,.07),
-        rgba(255,255,255,.025)
-    ),
-    var(--glass);
+        rgba(255,255,255,.76),
+        rgba(255,255,255,.48)
+    );
 
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
+    backdrop-filter:blur(26px);
+    -webkit-backdrop-filter:blur(26px);
 
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.08),
-    inset 0 -18px 35px rgba(0,0,0,.35),
-    0 24px 80px rgba(0,0,0,.22);
+    inset 0 1px 1px rgba(255,255,255,.85),
+    inset 0 -16px 28px rgba(255,255,255,.26),
+    0 24px 70px var(--shadow);
 
     transition:
     transform .35s ease,
     border-color .35s ease,
-    background .35s ease,
     box-shadow .35s ease;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+
+    background:
+    radial-gradient(circle at 88% 8%, var(--blob), transparent 34%),
+    radial-gradient(circle at 8% 92%, var(--soft), transparent 36%);
+
+    opacity:.95;
+    transition:.35s ease;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.34),
+        transparent 36%
+    );
 }
 
 .card:hover{
     transform:translateY(-8px);
-    border-color:rgba(155,118,47,.55);
-    background:
-    linear-gradient(
-        180deg,
-        rgba(155,118,47,.11),
-        rgba(255,255,255,.03)
-    ),
-    rgba(11,15,23,.55);
-
+    border-color:rgba(255,255,255,.95);
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.10),
-    inset 0 -18px 35px rgba(0,0,0,.38),
-    0 28px 90px rgba(0,0,0,.35);
+    inset 0 1px 1px rgba(255,255,255,.9),
+    0 30px 90px rgba(174,139,157,.28);
+}
+
+.card:hover::before{
+    transform:scale(1.08);
+    opacity:1;
 }
 
 .card-content{
@@ -243,9 +324,15 @@ body::after{
 }
 
 .label{
-    color:var(--gold);
-    font-size:.78rem;
-    letter-spacing:3px;
+    width:max-content;
+    color:#b66f86;
+    background:rgba(255,255,255,.56);
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:999px;
+
+    padding:7px 13px;
+    font-size:.72rem;
+    letter-spacing:2px;
     text-transform:uppercase;
     margin-bottom:18px;
 }
@@ -254,11 +341,12 @@ body::after{
     font-size:clamp(1.8rem,3vw,3rem);
     line-height:1.2;
     margin-bottom:18px;
+    color:#433a4c;
 }
 
 .card p{
     max-width:680px;
-    color:var(--muted);
+    color:#82758c;
     font-size:1rem;
     line-height:1.9;
 }
@@ -274,10 +362,12 @@ body::after{
 /* 页脚 */
 
 footer{
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:1px solid rgba(255,255,255,.58);
     padding:60px 20px;
     text-align:center;
     color:var(--muted);
+
+    background:rgba(255,255,255,.26);
     backdrop-filter:blur(16px);
     -webkit-backdrop-filter:blur(16px);
 }
@@ -287,7 +377,7 @@ footer p{
 }
 
 footer .brand{
-    color:var(--text);
+    color:#5a5063;
     letter-spacing:1px;
 }
 
@@ -308,16 +398,18 @@ footer .brand{
 
 @media(max-width:640px){
 
-    body::before{
-        background-attachment:scroll;
-    }
-
     .hero{
         min-height:92vh;
+        padding:60px 16px;
+    }
+
+    .hero-content{
+        padding:42px 24px;
+        border-radius:34px;
     }
 
     .hero h1{
-        font-size:2.15rem;
+        font-size:2.05rem;
     }
 
     .hero p{
@@ -330,7 +422,7 @@ footer .brand{
 
     .card{
         padding:28px;
-        border-radius:28px;
+        border-radius:30px;
     }
 
     .feature-card h3,
