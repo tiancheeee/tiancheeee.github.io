@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tiancheeee · Digital Music Salon</title>
+
+<style>
+
+:root{
+    --bg:#0b0f17;
+    --card:rgba(255,255,255,.05);
+    --text:#d9dde3;
+    --muted:#8f96a3;
+    --gold:#8b6b2f;
+    --border:rgba(255,255,255,.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "PingFang SC",
+    "Segoe UI",
+    sans-serif;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        rgba(7,10,15,.78),
+        rgba(7,10,15,.92)
+    ),
+    url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2000&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    filter:
+    grayscale(100%)
+    contrast(120%)
+    brightness(45%);
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        transparent 20%,
+        rgba(0,0,0,.5) 100%
+    );
+
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:1100px;
+    padding:20px;
+}
+
+.hero h1{
+
+    font-size:
+    clamp(2rem,4vw,4.8rem);
+
+    line-height:1.3;
+
+    margin-bottom:24px;
+}
+
+.hero p{
+
+    color:var(--muted);
+
+    font-size:1.15rem;
+
+    line-height:1.9;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.scroll-tip{
+
+    margin-top:40px;
+
+    color:var(--gold);
+
+    letter-spacing:2px;
+
+    font-size:.9rem;
+}
+
+/* SECTION */
+
+.section{
+
+    width:min(1400px,92%);
+
+    margin:auto;
+
+    padding:80px 0 120px;
+}
+
+/* BENTO */
+
+.bento{
+
+    display:grid;
+
+    gap:24px;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    grid-auto-rows:220px;
+}
+
+.card{
+
+    position:relative;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:30px;
+
+    padding:32px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:.35s;
+}
+
+.card:hover{
+
+    transform:
+    translateY(-8px);
+
+    border-color:
+    rgba(139,107,47,.4);
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.05),
+    inset 0 -12px 24px rgba(0,0,0,.25);
+
+    pointer-events:none;
+}
+
+.large{
+    grid-column:span 2;
+}
+
+.tall{
+    grid-row:span 2;
+}
+
+.label{
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-size:.8rem;
+}
+
+.card h2{
+
+    margin-top:16px;
+
+    margin-bottom:14px;
+
+    font-size:1.7rem;
+}
+
+.card p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+}
+
+.icon{
+
+    position:absolute;
+
+    right:22px;
+
+    bottom:10px;
+
+    font-size:5rem;
+
+    opacity:.08;
+}
+
+/* FOOTER */
+
+footer{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    border-top:
+    1px solid rgba(255,255,255,.05);
+
+    color:var(--muted);
+}
+
+footer p{
+    margin:8px 0;
+}
+
+@media(max-width:900px){
+
+.bento{
+grid-template-columns:1fr;
+}
+
+.large,
+.tall{
+grid-column:auto;
+grid-row:auto;
+}
+
+.hero{
+height:90vh;
+}
+
+.hero h1{
+font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+白天是生命科学的微观世界，<br>
+夜晚是重金属与贝斯的绝对律动。
+</h1>
+
+<p>
+欢迎来到我的个人存档点。<br>
+拔掉白天的插头，这里只提供纯粹的声响与生活留痕。
+</p>
+
+<div class="scroll-tip">
+DIGITAL MUSIC SALON ↓
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="bento">
+
+<a class="card large" href="playlist/index.html">
+
+<div class="label">
+Music Archive
+</div>
+
+<h2>
+近日单曲循环
+</h2>
+
+<p>
+记录那些不断重复播放，
+最终进入记忆深处的声音。
+</p>
+
+<div class="icon">
+◉
+</div>
+
+</a>
+
+<a class="card tall" href="guitar/index.html">
+
+<div class="label">
+Guitar Notes
+</div>
+
+<h2>
+吉他自学小记
+</h2>
+
+<p>
+和弦、拨片、节奏型与变调夹。
+每一次练习都值得留下痕迹。
+</p>
+
+<div class="icon">
+🎸
+</div>
+
+</a>
+
+<a class="card" href="vocal/index.html">
+
+<div class="label">
+Vocal Training
+</div>
+
+<h2>
+声乐训练与曲目
+</h2>
+
+<p>
+记录每一次呼吸、
+共鸣和音准修正。
+</p>
+
+<div class="icon">
+〰
+</div>
+
+</a>
+
+<a class="card" href="notes/index.html">
+
+<div class="label">
+Notes
+</div>
+
+<h2>
+杂言
+</h2>
+
+<p>
+一些不属于音乐，
+却依然属于生活的记录。
+</p>
+
+<div class="icon">
+✦
+</div>
+
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+Tiancheeee · Digital Music Salon
+</p>
+
+<p>
+Life Science × Metal × Bass
+</p>
+
+</footer>
+
+</body>
+</html>
