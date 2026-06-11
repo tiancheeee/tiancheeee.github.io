@@ -7,8 +7,6 @@
 <title>Tiancheeee · Digital Music Salon</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
-
 :root{
     --bg-top:#fff4dc;
     --bg-mid:#fffaf1;
@@ -27,7 +25,6 @@
     --blue-deep:#607f95;
     --purple-deep:#746891;
 
-    --card-border:rgba(255,255,255,.72);
     --shadow:rgba(116,96,78,.10);
 
     --playlist-img:url("assets/images/playlist.jpg");
@@ -51,25 +48,25 @@ body{
     color:var(--text);
 
     font-family:
-    "Nunito",
+    -apple-system,
+    BlinkMacSystemFont,
     "PingFang SC",
     "Hiragino Sans GB",
     "Microsoft YaHei UI",
     "Microsoft YaHei",
+    "Segoe UI",
     sans-serif;
 
     background:
     linear-gradient(
         180deg,
         var(--bg-top) 0%,
-        var(--bg-mid) 42%,
+        var(--bg-mid) 46%,
         var(--bg-bottom) 100%
     );
 
     overflow-x:hidden;
 }
-
-/* 只保留非常轻的空间感 */
 
 body::before{
     content:"";
@@ -79,23 +76,27 @@ body::before{
     pointer-events:none;
 
     background:
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,.46), transparent 42%);
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.48), transparent 44%),
+    radial-gradient(circle at 15% 12%, rgba(255,235,185,.20), transparent 30%);
 }
 
 /* Hero */
 
 .hero{
-    min-height:100vh;
+    position:relative;
+    min-height:92vh;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-
-    padding:90px 20px 70px;
+    padding:88px 20px 54px;
+    overflow:hidden;
 }
 
 .hero-content{
-    width:min(1120px,92%);
+    position:relative;
+    z-index:2;
+    width:min(1080px,92%);
 }
 
 .hero-kicker{
@@ -103,49 +104,83 @@ body::before{
     align-items:center;
     justify-content:center;
 
-    margin-bottom:34px;
-    padding:9px 18px;
+    margin-bottom:28px;
+    padding:8px 17px;
 
     border-radius:999px;
+    background:rgba(255,255,255,.42);
 
-    background:rgba(255,255,255,.38);
     color:#9a7753;
-
-    font-size:.76rem;
-    font-weight:800;
+    font-size:.74rem;
+    font-weight:700;
     letter-spacing:4px;
     text-transform:uppercase;
 }
 
 .hero h1{
-    max-width:1050px;
-    margin:0 auto 34px;
+    max-width:920px;
+    margin:0 auto 30px;
 
-    font-size:clamp(2.6rem,5.8vw,6.6rem);
-    line-height:1.08;
-    letter-spacing:-2.5px;
+    font-size:clamp(2.1rem,3.7vw,4.25rem);
+    line-height:1.18;
+    letter-spacing:-1.5px;
     color:#3f3933;
-    font-weight:800;
+    font-weight:760;
 }
 
 .hero p{
-    max-width:780px;
+    max-width:760px;
     margin:0 auto;
 
     color:var(--muted);
-    font-size:clamp(1rem,1.35vw,1.18rem);
+    font-size:clamp(1rem,1.18vw,1.13rem);
     line-height:2;
-    font-weight:500;
+    font-weight:400;
 }
 
 .scroll-tip{
     display:inline-flex;
-    margin-top:58px;
+    margin-top:50px;
 
     color:#9a7753;
-    font-size:.78rem;
-    font-weight:800;
-    letter-spacing:2.8px;
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:2.6px;
+}
+
+/* 小涂鸦：少量、轻、不要抢主标题 */
+
+.doodle{
+    position:absolute;
+    z-index:1;
+    color:rgba(100,80,60,.24);
+    font-size:clamp(1.4rem,2vw,2.2rem);
+    user-select:none;
+    pointer-events:none;
+}
+
+.doodle-1{
+    top:22%;
+    left:12%;
+    transform:rotate(-12deg);
+}
+
+.doodle-2{
+    top:28%;
+    right:14%;
+    transform:rotate(10deg);
+}
+
+.doodle-3{
+    bottom:18%;
+    left:18%;
+    transform:rotate(8deg);
+}
+
+.doodle-4{
+    bottom:20%;
+    right:18%;
+    transform:rotate(-10deg);
 }
 
 /* Main */
@@ -153,29 +188,29 @@ body::before{
 .main{
     width:min(1320px,92%);
     margin:0 auto;
-    padding:40px 0 140px;
+    padding:36px 0 138px;
 }
 
 .section-title{
-    margin-bottom:34px;
+    margin-bottom:32px;
 }
 
 .section-title span{
     color:#9a7753;
-    font-size:.76rem;
-    font-weight:800;
+    font-size:.74rem;
+    font-weight:700;
     letter-spacing:3px;
     text-transform:uppercase;
 }
 
 .section-title h2{
-    margin-top:14px;
+    margin-top:12px;
 
-    font-size:clamp(2rem,3vw,3.4rem);
-    line-height:1.18;
-    letter-spacing:-1.2px;
+    font-size:clamp(1.8rem,2.6vw,3rem);
+    line-height:1.2;
+    letter-spacing:-.8px;
     color:#3f3933;
-    font-weight:800;
+    font-weight:760;
 }
 
 /* Grid */
@@ -186,7 +221,7 @@ body::before{
 }
 
 .feature-card{
-    min-height:420px;
+    min-height:390px;
 }
 
 .card-row{
@@ -197,28 +232,26 @@ body::before{
 
 .card{
     position:relative;
-    min-height:330px;
-    padding:42px;
-    border-radius:36px;
+    min-height:315px;
+    padding:40px;
+    border-radius:34px;
     overflow:hidden;
 
     text-decoration:none;
     color:var(--text);
 
     background:var(--tone);
-    border:1px solid var(--card-border);
+    border:1px solid rgba(255,255,255,.66);
 
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.54),
-    0 20px 56px var(--shadow);
+    inset 0 1px 1px rgba(255,255,255,.48),
+    0 18px 48px var(--shadow);
 
     transition:
     transform .28s ease,
     box-shadow .28s ease,
     border-color .28s ease;
 }
-
-/* 照片层：非常淡，只作为质感 */
 
 .card::before{
     content:"";
@@ -232,17 +265,15 @@ body::before{
 
     filter:
     grayscale(100%)
-    brightness(1.32)
-    contrast(.86);
+    brightness(1.35)
+    contrast(.84);
 
-    opacity:.10;
+    opacity:.08;
 
     transition:
     opacity .3s ease,
     transform .45s ease;
 }
-
-/* 轻微高光 */
 
 .card::after{
     content:"";
@@ -255,22 +286,22 @@ body::before{
     linear-gradient(
         180deg,
         rgba(255,255,255,.28) 0%,
-        rgba(255,255,255,.06) 48%,
-        rgba(255,255,255,.10) 100%
+        rgba(255,255,255,.04) 48%,
+        rgba(255,255,255,.08) 100%
     );
 }
 
 .card:hover{
-    transform:translateY(-6px);
-    border-color:rgba(255,255,255,.94);
+    transform:translateY(-5px);
+    border-color:rgba(255,255,255,.92);
 
     box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.68),
-    0 28px 80px rgba(116,96,78,.14);
+    inset 0 1px 1px rgba(255,255,255,.62),
+    0 26px 70px rgba(116,96,78,.13);
 }
 
 .card:hover::before{
-    opacity:.16;
+    opacity:.14;
     transform:scale(1.035);
 }
 
@@ -280,24 +311,28 @@ body::before{
     --tone:var(--pink);
     --deep:var(--pink-deep);
     --image:var(--playlist-img);
+    --mark:"♪";
 }
 
 .guitar{
     --tone:var(--green);
     --deep:var(--green-deep);
     --image:var(--guitar-img);
+    --mark:"✧";
 }
 
 .vocal{
     --tone:var(--blue);
     --deep:var(--blue-deep);
     --image:var(--vocal-img);
+    --mark:"〜";
 }
 
 .notes{
     --tone:var(--purple);
     --deep:var(--purple-deep);
     --image:var(--notes-img);
+    --mark:"✿";
 }
 
 .card-content{
@@ -310,6 +345,21 @@ body::before{
     justify-content:flex-end;
 }
 
+.card-mark{
+    position:absolute;
+    top:28px;
+    right:32px;
+    z-index:2;
+
+    color:rgba(255,255,255,.58);
+    font-size:2.3rem;
+    line-height:1;
+}
+
+.card-mark::before{
+    content:var(--mark);
+}
+
 .label{
     width:max-content;
 
@@ -320,38 +370,38 @@ body::before{
     background:rgba(255,255,255,.28);
 
     color:var(--deep);
-    font-size:.72rem;
-    font-weight:800;
+    font-size:.71rem;
+    font-weight:700;
     letter-spacing:2px;
     text-transform:uppercase;
 }
 
 .card h3{
-    margin-bottom:18px;
+    margin-bottom:16px;
 
     color:#3f3933;
-    font-size:clamp(1.9rem,3vw,3.1rem);
-    line-height:1.15;
-    letter-spacing:-.8px;
-    font-weight:800;
+    font-size:clamp(1.75rem,2.7vw,2.8rem);
+    line-height:1.18;
+    letter-spacing:-.4px;
+    font-weight:760;
 }
 
 .card p{
     max-width:700px;
 
     color:#6f655b;
-    font-size:1rem;
+    font-size:.98rem;
     line-height:1.9;
-    font-weight:500;
+    font-weight:400;
 }
 
 .feature-card h3{
-    font-size:clamp(2.8rem,5vw,5rem);
-    letter-spacing:-1.8px;
+    font-size:clamp(2.25rem,4vw,4.1rem);
+    letter-spacing:-1px;
 }
 
 .feature-card p{
-    font-size:1.08rem;
+    font-size:1.04rem;
 }
 
 /* Footer */
@@ -368,8 +418,8 @@ footer p{
 
 footer .brand{
     color:#4f463e;
-    font-weight:800;
-    letter-spacing:.5px;
+    font-weight:700;
+    letter-spacing:.4px;
 }
 
 /* 响应式 */
@@ -382,7 +432,11 @@ footer .brand{
 
     .feature-card,
     .card{
-        min-height:320px;
+        min-height:300px;
+    }
+
+    .doodle{
+        opacity:.55;
     }
 
 }
@@ -390,32 +444,42 @@ footer .brand{
 @media(max-width:640px){
 
     .hero{
-        min-height:92vh;
-        padding:70px 18px 50px;
+        min-height:88vh;
+        padding:70px 18px 44px;
     }
 
     .hero h1{
-        font-size:2.55rem;
-        letter-spacing:-1.2px;
+        font-size:2.1rem;
+        letter-spacing:-.8px;
     }
 
     .hero p{
         font-size:1rem;
     }
 
+    .doodle{
+        display:none;
+    }
+
     .main{
-        padding:20px 0 100px;
+        padding:20px 0 96px;
     }
 
     .card{
-        min-height:300px;
+        min-height:286px;
         padding:30px;
         border-radius:30px;
     }
 
     .feature-card h3,
     .card h3{
-        font-size:2.15rem;
+        font-size:2rem;
+    }
+
+    .card-mark{
+        top:24px;
+        right:26px;
+        font-size:2rem;
     }
 
 }
@@ -425,6 +489,11 @@ footer .brand{
 <body>
 
 <section class="hero">
+
+    <span class="doodle doodle-1">♪</span>
+    <span class="doodle doodle-2">✧</span>
+    <span class="doodle doodle-3">♡</span>
+    <span class="doodle doodle-4">〜</span>
 
     <div class="hero-content">
 
@@ -468,6 +537,8 @@ footer .brand{
 
         <a class="card feature-card playlist" href="playlist/index.html">
 
+            <div class="card-mark"></div>
+
             <div class="card-content">
 
                 <div class="label">
@@ -491,6 +562,8 @@ footer .brand{
 
             <a class="card guitar" href="guitar/index.html">
 
+                <div class="card-mark"></div>
+
                 <div class="card-content">
 
                     <div class="label">
@@ -512,6 +585,8 @@ footer .brand{
 
             <a class="card vocal" href="vocal/index.html">
 
+                <div class="card-mark"></div>
+
                 <div class="card-content">
 
                     <div class="label">
@@ -532,6 +607,8 @@ footer .brand{
             </a>
 
             <a class="card notes" href="notes/index.html">
+
+                <div class="card-mark"></div>
 
                 <div class="card-content">
 
