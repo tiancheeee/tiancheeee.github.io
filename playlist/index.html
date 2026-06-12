@@ -13,21 +13,14 @@
     --bg-bottom:#fffefb;
 
     --pink:#f8d7df;
-    --pink-light:#fae4ea;
+    --pink-light:#fae6eb;
     --pink-deep:#9c6a78;
 
     --text:#3f3933;
     --muted:#8b8176;
-    --soft:#fffaf6;
+    --soft-text:#6f655b;
 
     --shadow:rgba(116,96,78,.10);
-
-    /*
-    每条动态的封面图放这里：
-    ../assets/images/mbdtf.jpg
-    ../assets/images/starboy.jpg
-    ../assets/images/dark-side.jpg
-    */
 }
 
 *{
@@ -75,7 +68,7 @@ body::before{
 
     background:
     radial-gradient(circle at 50% 0%, rgba(255,255,255,.45), transparent 44%),
-    radial-gradient(circle at 20% 12%, rgba(248,215,223,.22), transparent 30%);
+    radial-gradient(circle at 20% 12%, rgba(248,215,223,.20), transparent 30%);
 }
 
 .page{
@@ -84,24 +77,111 @@ body::before{
     padding:40px 0 100px;
 }
 
-/* Nav */
+/* 顶部导航 */
 
 .nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:92px;
+    margin-bottom:88px;
 }
 
-.back{
+/* 液态玻璃按钮 */
+
+.liquid-btn{
+    --x:50%;
+    --y:50%;
+
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    padding:10px 18px;
+    border-radius:999px;
+
     color:var(--pink-deep);
     text-decoration:none;
     font-size:.95rem;
     font-weight:600;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.44),
+        rgba(255,255,255,.18)
+    );
+
+    border:1px solid rgba(255,255,255,.62);
+
+    backdrop-filter:blur(16px) saturate(130%);
+    -webkit-backdrop-filter:blur(16px) saturate(130%);
+
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.64),
+    inset 0 -10px 20px rgba(255,255,255,.10),
+    0 14px 38px rgba(116,96,78,.08);
+
+    overflow:hidden;
+    cursor:pointer;
+
+    transition:
+    transform .24s ease,
+    box-shadow .24s ease,
+    border-color .24s ease;
 }
 
-.back:hover{
-    text-decoration:underline;
+.liquid-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at var(--x) var(--y),
+        rgba(255,255,255,.72),
+        rgba(255,255,255,.22) 16%,
+        transparent 42%
+    );
+
+    opacity:0;
+    transition:opacity .25s ease;
+}
+
+.liquid-btn::after{
+    content:"";
+    position:absolute;
+    inset:1px;
+    border-radius:inherit;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.34),
+        transparent 42%
+    );
+
+    pointer-events:none;
+}
+
+.liquid-btn span{
+    position:relative;
+    z-index:2;
+}
+
+.liquid-btn:hover{
+    transform:translateY(-3px);
+    border-color:rgba(255,255,255,.88);
+
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.78),
+    inset 0 -10px 20px rgba(255,255,255,.12),
+    0 20px 52px rgba(116,96,78,.13);
+}
+
+.liquid-btn:hover::before{
+    opacity:.78;
 }
 
 .nav-tag{
@@ -116,7 +196,7 @@ body::before{
 
 .hero{
     text-align:center;
-    margin-bottom:70px;
+    margin-bottom:72px;
 }
 
 .kicker{
@@ -131,9 +211,9 @@ body::before{
 }
 
 .hero h1{
-    font-size:clamp(2.4rem,5vw,5.2rem);
-    line-height:1.1;
-    letter-spacing:-1.5px;
+    font-size:clamp(2.3rem,4.6vw,4.8rem);
+    line-height:1.12;
+    letter-spacing:-1.2px;
     font-weight:760;
     margin-bottom:24px;
 }
@@ -142,7 +222,7 @@ body::before{
     max-width:760px;
     margin:0 auto;
     color:var(--muted);
-    font-size:1.08rem;
+    font-size:1.06rem;
     line-height:2;
 }
 
@@ -196,10 +276,6 @@ body::before{
 
 /* 封面 */
 
-.cover-wrap{
-    width:100%;
-}
-
 .cover{
     aspect-ratio:1 / 1;
     width:100%;
@@ -223,8 +299,6 @@ body::before{
     display:block;
 }
 
-/* 如果暂时没有封面图，会显示这个 */
-
 .cover-placeholder{
     width:100%;
     height:100%;
@@ -246,7 +320,7 @@ body::before{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    gap:26px;
+    gap:28px;
 }
 
 .meta{
@@ -268,9 +342,9 @@ body::before{
 }
 
 .song-title{
-    font-size:clamp(1.9rem,3.4vw,3.4rem);
+    font-size:clamp(1.9rem,3.2vw,3.2rem);
     line-height:1.12;
-    letter-spacing:-.8px;
+    letter-spacing:-.7px;
     font-weight:760;
     margin-bottom:10px;
 }
@@ -279,19 +353,38 @@ body::before{
     color:var(--pink-deep);
     font-size:1.05rem;
     font-weight:700;
-    margin-bottom:22px;
+    margin-bottom:10px;
+}
+
+.album{
+    color:#7a6e64;
+    font-size:.98rem;
+    font-weight:600;
+    margin-bottom:24px;
+}
+
+.album span{
+    color:var(--pink-deep);
 }
 
 .review{
-    color:#6f655b;
+    color:var(--soft-text);
     font-size:1rem;
-    line-height:1.9;
+    line-height:1.95;
+}
+
+.review p{
+    margin-bottom:14px;
+}
+
+.review p:last-child{
+    margin-bottom:0;
 }
 
 /* 评论区 */
 
 .comment-area{
-    margin-top:10px;
+    margin-top:4px;
     padding:20px;
 
     border-radius:24px;
@@ -299,10 +392,17 @@ body::before{
     border:1px solid rgba(255,255,255,.45);
 }
 
+.comment-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:10px;
+}
+
 .comment-area h3{
     font-size:1rem;
     color:#4f463e;
-    margin-bottom:8px;
 }
 
 .comment-area p{
@@ -374,7 +474,7 @@ footer .brand{
     }
 
     .hero h1{
-        font-size:2.5rem;
+        font-size:2.35rem;
     }
 
     .music-post{
@@ -390,6 +490,11 @@ footer .brand{
         font-size:2rem;
     }
 
+    .comment-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
 }
 </style>
 </head>
@@ -400,8 +505,8 @@ footer .brand{
 
     <nav class="nav">
 
-        <a href="../index.html" class="back">
-            ← 返回主页
+        <a href="../index.html" class="liquid-btn">
+            <span>← 返回主页</span>
         </a>
 
         <div class="nav-tag">
@@ -429,7 +534,7 @@ footer .brand{
 
     <main class="feed">
 
-        <!-- 动态 1 -->
+        <!-- 动态 1：Runaway -->
 
         <article class="music-post">
 
@@ -446,8 +551,8 @@ footer .brand{
                 <div>
 
                     <div class="meta">
-                        <span>发布于 2026-06-10 16:30</span>
-                        <span>单曲循环</span>
+                        <span>发布于 2026-02</span>
+                        <span>2026年2月最喜欢的歌</span>
                     </div>
 
                     <h2 class="song-title">
@@ -455,139 +560,57 @@ footer .brand{
                     </h2>
 
                     <div class="artist">
-                        Kanye West
+                        Ye
                     </div>
 
-                    <p class="review">
-                        这里写你的评价。可以写这首歌为什么让你震撼，某一段旋律、编曲、
-                        情绪推进，或者它在某个时间点给你的感觉。
-                    </p>
+                    <div class="album">
+                        所属专辑：<span>My Beautiful Dark Twisted Fantasy</span>
+                    </div>
+
+                    <div class="review">
+
+                        <p>
+                            在昆明的一个月把 MBDTF 从头到尾听了好几遍，其中最爱 Runaway 一曲。
+                        </p>
+
+                        <p>
+                            对于这首歌，除了因为和我步频相近，它的嘻哈、摇滚、说唱是令喜欢听流行的我眼前一亮的。
+                            我想如果开始玩黑胶，我的第一张黑胶想必就是它了吧！
+                        </p>
+
+                        <p>
+                            MBDTF 很注重专辑的整体性，无论是曲目位置安排还是曲目的风格，
+                            合在一起才能更好地体现它的独特魅力。
+                        </p>
+
+                        <p>
+                            MBDTF 是 Ye 的救赎之作，它宣告着——YE 已归来。
+                            我愿称之为神专，目前心中的 top 1。
+                        </p>
+
+                    </div>
 
                 </div>
 
                 <section class="comment-area">
 
-                    <h3>
-                        互动讨论
-                    </h3>
+                    <div class="comment-header">
+
+                        <h3>
+                            互动讨论
+                        </h3>
+
+                        <button class="liquid-btn" type="button">
+                            <span>评论区预留</span>
+                        </button>
+
+                    </div>
 
                     <p>
                         后续可以在这里接入 Giscus，让这条动态拥有自己的评论区。
                     </p>
 
-                    <div class="giscus-placeholder" id="giscus-track-01">
-                        Giscus 评论区挂载位置
-                    </div>
-
-                </section>
-
-            </div>
-
-        </article>
-
-        <!-- 动态 2 -->
-
-        <article class="music-post">
-
-            <div class="cover-wrap">
-
-                <div class="cover">
-                    <img src="../assets/images/starboy.jpg" alt="Starboy 封面">
-                </div>
-
-            </div>
-
-            <div class="post-body">
-
-                <div>
-
-                    <div class="meta">
-                        <span>发布于 2026-06-11 22:15</span>
-                        <span>单曲循环</span>
-                    </div>
-
-                    <h2 class="song-title">
-                        Starboy
-                    </h2>
-
-                    <div class="artist">
-                        The Weeknd
-                    </div>
-
-                    <p class="review">
-                        这里写你的评价。比如它的节奏、音色、氛围感，
-                        或者为什么这首歌会在某几天里反复出现。
-                    </p>
-
-                </div>
-
-                <section class="comment-area">
-
-                    <h3>
-                        互动讨论
-                    </h3>
-
-                    <p>
-                        后续可以在这里接入 Giscus，让这条动态拥有自己的评论区。
-                    </p>
-
-                    <div class="giscus-placeholder" id="giscus-track-02">
-                        Giscus 评论区挂载位置
-                    </div>
-
-                </section>
-
-            </div>
-
-        </article>
-
-        <!-- 动态 3 -->
-
-        <article class="music-post">
-
-            <div class="cover-wrap">
-
-                <div class="cover">
-                    <img src="../assets/images/dark-side.jpg" alt="The Dark Side Of The Moon 封面">
-                </div>
-
-            </div>
-
-            <div class="post-body">
-
-                <div>
-
-                    <div class="meta">
-                        <span>发布于 2026-06-12 20:40</span>
-                        <span>单曲循环</span>
-                    </div>
-
-                    <h2 class="song-title">
-                        Time
-                    </h2>
-
-                    <div class="artist">
-                        Pink Floyd
-                    </div>
-
-                    <p class="review">
-                        这里写你的评价。可以记录第一次听到它的感受，
-                        也可以写它为什么像一个很清楚的时间标记。
-                    </p>
-
-                </div>
-
-                <section class="comment-area">
-
-                    <h3>
-                        互动讨论
-                    </h3>
-
-                    <p>
-                        后续可以在这里接入 Giscus，让这条动态拥有自己的评论区。
-                    </p>
-
-                    <div class="giscus-placeholder" id="giscus-track-03">
+                    <div class="giscus-placeholder" id="giscus-track-runaway">
                         Giscus 评论区挂载位置
                     </div>
 
@@ -612,6 +635,21 @@ footer .brand{
     </footer>
 
 </div>
+
+<script>
+const liquidButtons = document.querySelectorAll(".liquid-btn");
+
+liquidButtons.forEach((button) => {
+    button.addEventListener("pointermove", (event) => {
+        const rect = button.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+        button.style.setProperty("--x", `${x}%`);
+        button.style.setProperty("--y", `${y}%`);
+    });
+});
+</script>
 
 </body>
 </html>
